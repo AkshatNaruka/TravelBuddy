@@ -8,7 +8,7 @@ function App() {
   const [generatedInfo, setGeneratedInfo] = useState({
     attractions: '',
     restaurants: '',
-    activities: '',
+    Itinerary: '',
     travelTips: ''
   });
   const [loading, setLoading] = useState(false); // Add loading state
@@ -22,13 +22,13 @@ function App() {
     try {
       const attractionsResponse = await axios.get(`http://127.0.0.1:5000/generate_attractions_info?topic=${topic}`);
       const restaurantsResponse = await axios.get(`http://127.0.0.1:5000/generate_restaurants_info?topic=${topic}`);
-      const activitiesResponse = await axios.get(`http://127.0.0.1:5000/generate_activities_info?topic=${topic}`);
+      const ItineraryResponse = await axios.get(`http://127.0.0.1:5000/generate_itinerary_info?topic=${topic}`);
       const travelTipsResponse = await axios.get(`http://127.0.0.1:5000/generate_travel_tips?topic=${topic}`);
 
       setGeneratedInfo({
         attractions: attractionsResponse.data,
         restaurants: restaurantsResponse.data,
-        activities: activitiesResponse.data,
+        activities: ItineraryResponse.data,
         travelTips: travelTipsResponse.data
       });
     } catch (error) {
@@ -36,7 +36,7 @@ function App() {
       setGeneratedInfo({
         attractions: 'Error: Unable to generate attractions info',
         restaurants: 'Error: Unable to generate restaurants info',
-        activities: 'Error: Unable to generate activities info',
+        Itinerary: 'Error: Unable to generate activities info',
         travelTips: 'Error: Unable to generate travel tips'
       });
     } finally {
@@ -90,8 +90,8 @@ function App() {
             <h2>Restaurants</h2>
             {displayInfo(generatedInfo.restaurants)}
 
-            <h2>Activities</h2>
-            {displayInfo(generatedInfo.activities)}
+            <h2>Itinerary</h2>
+            {displayInfo(generatedInfo.Itinerary)}
 
             <h2>Travel Tips</h2>
             {displayInfo(generatedInfo.travelTips)}
