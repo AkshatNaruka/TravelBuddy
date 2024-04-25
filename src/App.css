@@ -1,99 +1,143 @@
-/* App Container */
+/* Overall Styles */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #333; /* Dark text for readability */
+}
+
 .app-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #f0f2f5; /* Light background for better contrast */
+  padding: 5rem;
+  box-sizing: border-box;
+}
+
+/* Header */
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
   text-align: center;
+  color: #263238; /* Darker blue for emphasis */
 }
 
 /* Input Container */
+
 .input-container {
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 2rem;
 }
 
-/* Input Label */
 label {
-  margin-right: 10px;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #7a7a7a; /* Lighter gray for labels */
 }
 
-/* Input Field */
 input[type="text"] {
-  padding: 8px;
+  padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease-in-out;
 }
 
-/* Generate Button */
+input[type="text"]:focus {
+  border-color: #263238; /* Blue border on focus */
+}
+
 button {
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #fff;
+  padding: 1rem 2rem;
+  background-color: #263238; /* Blue button */
+  color: #fff; /* White text */
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease-in-out;
+  margin-top: 2rem;
 }
 
-/* Loading Animation */
+.share-container {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+
+button:hover {
+  background-color: #007bff; /* Darker blue on hover */
+}
+
+/* Information Container */
+
+.info-container {
+  width: 100%;
+  max-width: 700px; /* Adjust width for wider content */
+}
+
 .loading {
-  margin-top: 20px;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #007bff;
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ccc;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  border-top-color: #263238; /* Blue for loading animation */
   animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-/* Info Container */
-.info-container {
-  text-align: left;
+/* Content Sections */
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #263238;
 }
 
-/* Attractions Box */
-.info-container .attractions {
-  background-color: #28a745;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-/* Restaurants Box */
-.info-container .restaurants {
-  background-color: #ffc107;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
 }
 
-/* Itinerary Box */
-.info-container .itinerary {
-  background-color: #007bff;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+.itinerary-container {
+  margin-bottom: 1rem;
 }
 
-/* Itinerary Day */
 .itinerary-day {
-  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #263238;
 }
 
-/* Itinerary Details */
 .itinerary-details {
-  color: #fff;
+  margin-left: 1rem;
 }
 
-/* Link Styling */
 a {
-  color: #007bff;
+  color: #263238; /* Blue for links */
   text-decoration: none;
+  transition: color 0.2s ease-in-out;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: #007bff; /* Darker blue on hover */
 }

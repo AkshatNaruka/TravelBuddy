@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css'; // Import CSS file
+import Share from './Share';
 
 function App() {
   const [topic, setTopic] = useState('');
@@ -12,7 +13,7 @@ function App() {
     travelTips: ''
   });
   const [loading, setLoading] = useState(false); // Add loading state
-
+  
   const handleTopicChange = (e) => {
     setTopic(e.target.value);
   };
