@@ -4,10 +4,11 @@ import './App.css'; // Import CSS file
 
 function App() {
   const [topic, setTopic] = useState('');
+  const [numDays, setNumDays] = useState('');
   const [generatedInfo, setGeneratedInfo] = useState({
     attractions: '',
     restaurants: '',
-    itinerary: '', // Changed "Itinerary" to lowercase
+    itinerary: '',
     travelTips: ''
   });
   const [loading, setLoading] = useState(false); // Add loading state
@@ -15,19 +16,23 @@ function App() {
   const handleTopicChange = (e) => {
     setTopic(e.target.value);
   };
-  
+
+  const handleNumDaysChange = (e) => {
+    setNumDays(e.target.value);
+  };
+
   const handleGenerateInfo = async () => {
     setLoading(true); // Set loading to true when fetching data
     try {
       const attractionsResponse = await axios.get(`http://127.0.0.1:5000/generate_attractions_info?topic=${topic}`);
       const restaurantsResponse = await axios.get(`http://127.0.0.1:5000/generate_restaurants_info?topic=${topic}`);
-      const itineraryResponse = await axios.get(`http://127.0.0.1:5000/generate_itinerary_info?topic=${topic}`); // Changed to "itinerary"
+      const itineraryResponse = await axios.get(`http://127.0.0.1:5000/generate_itinerary_info?topic=${topic}&num_days=${numDays}`);
       const travelTipsResponse = await axios.get(`http://127.0.0.1:5000/generate_travel_tips?topic=${topic}`);
 
       setGeneratedInfo({
         attractions: attractionsResponse.data,
         restaurants: restaurantsResponse.data,
-        itinerary: itineraryResponse.data, // Changed to "itinerary"
+        itinerary: itineraryResponse.data,
         travelTips: travelTipsResponse.data
       });
     } catch (error) {
@@ -35,7 +40,7 @@ function App() {
       setGeneratedInfo({
         attractions: 'Error: Unable to generate attractions info',
         restaurants: 'Error: Unable to generate restaurants info',
-        itinerary: 'Error: Unable to generate itinerary info', // Changed to "itinerary"
+        itinerary: 'Error: Unable to generate itinerary info',
         travelTips: 'Error: Unable to generate travel tips'
       });
     } finally {
@@ -43,38 +48,52 @@ function App() {
     }
   };
 
-  const removeAsterisks = (text) => {
-    // Enhanced regular expression to handle multiple asterisks within text
-    return text.replace(/\*/g, ''); // Replaces occurrences of two or more consecutive asterisks
-  };
-
   const displayInfo = (infoSection) => {
-    const lines = infoSection.split('\n');
-    const processedInfo = lines.map((line, index) => {
-      const trimmedLine = line.trim();
+
+    return infoSection.split('\n').map((line, index) => {
+      const trimmedLine = line.trim(); // Trim leading/trailing spaces
+
       if (trimmedLine.startsWith('## ')) {
+        // Remove leading ## for headings
         return <h2 key={index}>{trimmedLine.slice(3)}</h2>;
       } else if (trimmedLine.startsWith('* ')) {
-        return <li key={index}>{trimmedLine.slice(2)}</li>;
-      } else {
+        // Remove leading asterisk and any subsequent asterisks within the list item content
+        return (
+          <li key={index}>
+            {trimmedLine.slice(2).replace(/\*/g, '')}
+          </li>
+        );
+      } else if (trimmedLine.startsWith('  * ')) {
+        // Remove leading spaces and asterisk for sub-bullet points
+        return <li key={index}>{trimmedLine.slice(4)}</li>;
+      } else if (trimmedLine.match(/^Further Reading|^/)) {
+        // Handle "Further Reading" section without asterisks
         return <p key={index}>{trimmedLine}</p>;
+      } else if (trimmedLine.match(/^https?:\/\//)) {
+        // Handle links (URLs)
+        const url = trimmedLine;
+        return (
+          <p key={index}>
+            <a href={url} target="_blank" rel="noreferrer noopener">
+              {url}
+            </a>
+          </p>
+        );
+      } else {
+        // Remove remaining asterisks within paragraphs or descriptions,
+        // handle itinerary formatting
+        if (trimmedLine.startsWith('*Day ')) {
+          return <h3 key={index} className="itinerary-day">{trimmedLine}</h3>;
+        } else if (trimmedLine.length > 0) {
+          return (
+            <p key={index} className="itinerary-details">
+              {trimmedLine.replace(/\*/g, '')}
+            </p>
+          );
+        } else {
+          return null; // Ignore empty lines
+        }
       }
-    });
-    
-    // Ensure leading/trailing asterisks are removed from processed elements
-    if (processedInfo.length > 0 && processedInfo[0].props.children.startsWith('*')) {
-      processedInfo.shift();
-    }
-    if (processedInfo.length > 0 && processedInfo[processedInfo.length - 1].props.children.endsWith('*')) {
-      processedInfo.pop();
-    }
-    
-    // Remove all remaining asterisks within paragraphs or descriptions
-    return processedInfo.map((element) => {
-      if (element.type === 'p') {
-        return <p key={element.key}>{removeAsterisks(element.props.children)}</p>;
-      }
-      return element; // Return other elements unchanged
     });
   };
 
@@ -89,23 +108,46 @@ function App() {
           value={topic}
           onChange={handleTopicChange}
         />
+        <label htmlFor="numDays">Number of Days (optional):</label>
+        <input
+          type="text"
+          id="numDays"
+          value={numDays}
+          onChange={handleNumDaysChange}
+        />
         <button onClick={handleGenerateInfo}>Generate Info</button>
       </div>
       <div className="info-container">
-        {loading && <div className="loading"></div>} {/* Display loading animation */}
+        {loading && <div className="loading"></div>}
         {!loading && (
           <div>
-            <h2>Attractions</h2>
-            {displayInfo(generatedInfo.attractions)}
+            {generatedInfo.attractions && (
+              <>
+                <h2>Attractions</h2>
+                <ul>{displayInfo(generatedInfo.attractions)}</ul>
+              </>
+            )}
 
-            <h2>Restaurants</h2>
-            {displayInfo(generatedInfo.restaurants)}
+            {generatedInfo.restaurants && (
+              <>
+                <h2>Restaurants</h2>
+                <ul>{displayInfo(generatedInfo.restaurants)}</ul>
+              </>
+            )}
 
-            <h2>Itinerary</h2>
-            {displayInfo(generatedInfo.itinerary)} {/* Changed to "itinerary" */}
+            {generatedInfo.itinerary && (
+              <>
+                <h2>Itinerary</h2>
+                <div className="itinerary-container">{displayInfo(generatedInfo.itinerary)}</div>
+              </>
+            )}
 
-            <h2>Travel Tips</h2>
-            {displayInfo(generatedInfo.travelTips)}
+            {generatedInfo.travelTips && (
+              <>
+                <h2>Travel Tips</h2>
+                <ul>{displayInfo(generatedInfo.travelTips)}</ul>
+              </>
+            )}
           </div>
         )}
       </div>
