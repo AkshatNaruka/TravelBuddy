@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css'; // Import CSS file
-import Share from './Share';
+
 
 function App() {
   const [topic, setTopic] = useState('');
