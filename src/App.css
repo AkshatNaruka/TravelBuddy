@@ -141,3 +141,110 @@ a {
 a:hover {
   color: #007bff; /* Darker blue on hover */
 }
+
+/* App.css */
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.input-container {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.info-box-container {
+  display: flex;
+  justify-content: center;
+}
+
+.info-box {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.attractions {
+  background-color: #c7ecc7;
+}
+
+.restaurants {
+  background-color: #ffe066;
+}
+
+.itinerary {
+  background-color: #a8d1ff;
+}
+
+.travel-tips {
+  background-color: #ffb6b6;
+}
+
+.additional-info {
+  margin-top: 20px;
+}
+
+.loading {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Adjustments for Itinerary */
+.itinerary-container {
+  margin-top: 10px;
+}
+
+.itinerary-day {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.itinerary-details {
+  margin-bottom: 5px;
+}
