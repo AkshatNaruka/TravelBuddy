@@ -5,13 +5,11 @@ import Attractions from './Attractions';
 import Restaurants from './Restaurants';
 import Itinerary from './Itinerary';
 import TravelTips from './TravelTips';
-import WeatherInfo from './WeatherInfo';
-import CurrencyConverter from './CurrencyConverter';
+
 
 function App() {
   const [topic, setTopic] = useState('');
   const [numDays, setNumDays] = useState('');
-  // eslint-disable-next-line
   const [generatedInfo, setGeneratedInfo] = useState({
     attractions: '',
     restaurants: '',
@@ -114,7 +112,13 @@ function App() {
           value={numDays}
           onChange={handleNumDaysChange}
         />
-        <button onClick={handleGenerateInfo}>Generate Info</button>
+        <button onClick={handleGenerateInfo}>
+          {loading ? (
+            <div className="loading"></div>
+          ) : (
+            "Generate Info"
+          )}
+        </button>
       </div>
       <div className="info-grid">
         <div className="info-box-container">
@@ -137,10 +141,6 @@ function App() {
             <TravelTips travelTips={displayInfo(generatedInfo.travelTips)} />
           )}
         </div>
-      </div>
-      <div className="additional-info">
-        {topic && <WeatherInfo city={topic} />}
-        {topic && <CurrencyConverter city={topic} />}
       </div>
     </div>
   );
