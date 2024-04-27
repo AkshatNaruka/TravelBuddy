@@ -19,7 +19,7 @@
     "eject": "react-scripts eject",
     "vercel-build": "npm install"
   },"vercel": {
-    "functions": "api"
+    "functions": "server"
   },
   "eslintConfig": {
     "extends": [
