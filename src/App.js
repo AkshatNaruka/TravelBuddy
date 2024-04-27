@@ -55,11 +55,13 @@ function App() {
   };
 
   const displayInfo = (infoSection) => {
-    return infoSection.split('\n').map((line, index) => {
+    const lines = infoSection.split('\n');
+  
+    return lines.map((line, index) => {
       const trimmedLine = line.trim();
-
-      if (trimmedLine.startsWith('## ')) {
-        return <h2 key={index}>{trimmedLine.slice(3)}</h2>;
+  
+      if (trimmedLine.startsWith('### ')) {
+        return <h3 key={index}>{trimmedLine.slice(4)}</h3>;
       } else if (trimmedLine.startsWith('* ')) {
         return (
           <li key={index}>
@@ -80,9 +82,7 @@ function App() {
           </p>
         );
       } else {
-        if (trimmedLine.startsWith('*Day ')) {
-          return <h3 key={index} className="itinerary-day">{trimmedLine}</h3>;
-        } else if (trimmedLine.length > 0) {
+        if (trimmedLine.length > 0) {
           return (
             <p key={index} className="itinerary-details">
               {trimmedLine.replace(/\*/g, '')}
@@ -94,6 +94,7 @@ function App() {
       }
     });
   };
+  
 
   return (
     <div className="app-container">
