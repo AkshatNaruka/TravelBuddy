@@ -5,6 +5,7 @@ import Attractions from './Attractions';
 import Restaurants from './Restaurants';
 import Itinerary from './Itinerary';
 import TravelTips from './TravelTips';
+import Budget from './budget';
 
 
 function App() {
@@ -142,7 +143,11 @@ function App() {
           )}
         </div>
       </div>
+      {generatedInfo.attractions && generatedInfo.restaurants && generatedInfo.itinerary && generatedInfo.travelTips && (
+        <Budget topic={topic} />
+      )}
     </div>
+  
   );
 }
 
