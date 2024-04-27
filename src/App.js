@@ -10,7 +10,6 @@ import Budget from './budget';
 
 function App() {
   const [topic, setTopic] = useState('');
-  const [numDays, setNumDays] = useState('');
   const [generatedInfo, setGeneratedInfo] = useState({
     attractions: '',
     restaurants: '',
@@ -23,16 +22,12 @@ function App() {
     setTopic(e.target.value);
   };
 
-  const handleNumDaysChange = (e) => {
-    setNumDays(e.target.value);
-  };
-
   const handleGenerateInfo = async () => {
     setLoading(true);
     try {
       const attractionsResponse = await axios.get(`http://127.0.0.1:5000/generate_attractions_info?topic=${topic}`);
       const restaurantsResponse = await axios.get(`http://127.0.0.1:5000/generate_restaurants_info?topic=${topic}`);
-      const itineraryResponse = await axios.get(`http://127.0.0.1:5000/generate_itinerary_info?topic=${topic}&num_days=${numDays}`);
+      const itineraryResponse = await axios.get(`http://127.0.0.1:5000/generate_itinerary_info?topic=${topic}`);
       const travelTipsResponse = await axios.get(`http://127.0.0.1:5000/generate_travel_tips?topic=${topic}`);
 
       setGeneratedInfo({
@@ -106,13 +101,6 @@ function App() {
           id="topic"
           value={topic}
           onChange={handleTopicChange}
-        />
-        <label htmlFor="numDays">Number of Days (optional):</label>
-        <input
-          type="text"
-          id="numDays"
-          value={numDays}
-          onChange={handleNumDaysChange}
         />
         <button onClick={handleGenerateInfo}>
           {loading ? (
