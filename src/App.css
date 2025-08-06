@@ -7,83 +7,190 @@
 }
 
 body {
-  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  font-family: 'Segoe UI', 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  color: #333;
-  background-color: #f0f2f5;
+  color: #1a1a1a;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
 }
 
-.container {
-  max-width: 1200px;
+.app-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Travel Input Form Styles */
+.travel-input-form {
+  max-width: 900px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
-/* Header */
-
-.header {
+.form-header {
   text-align: center;
   margin-bottom: 2rem;
 }
 
-.header h1 {
-  font-size: 2.5rem;
-  color: #263238;
-  margin-bottom: 1rem;
+.form-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
 }
 
-/* Form */
-
-.form {
-  max-width: 500px;
-  margin: 0 auto;
+.form-header p {
+  font-size: 1.2rem;
+  color: #666;
+  font-weight: 500;
 }
 
-.form-group {
+.planning-form {
+  margin-bottom: 2rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
-.form-label {
-  font-size: 1rem;
-  color: #7a7a7a;
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
   margin-bottom: 0.5rem;
-  display: block;
+  color: #333;
+  font-size: 0.95rem;
 }
 
-.form-input {
-  width: 100%;
+.form-group input,
+.form-group select {
   padding: 1rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 12px;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  transition: border-color 0.2s ease-in-out;
+  transition: all 0.3s ease;
+  background: white;
 }
 
-.form-input:focus {
-  border-color: #263238;
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.btn {
-  display: inline-block;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  color: #fff;
-  background-color: #263238;
+.generate-plan-btn {
+  width: 100%;
+  padding: 1.2rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
-.btn:hover {
-  background-color: #007bff;
+.generate-plan-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
 }
 
-/* Main Content */
+.generate-plan-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
 
-.main-content {
-  margin-top: 2rem;
+.features-preview {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(102, 126, 234, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.features-preview h3 {
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.feature-item {
+  background: white;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #667eea;
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Results Page Styles */
+.travel-results {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.results-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.results-header h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.new-search-btn {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.new-search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
 }
 
 .section {
@@ -92,64 +199,219 @@ body {
 
 .section-title {
   font-size: 2rem;
-  color: #263238;
+  color: white;
   margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.section-content {
-  line-height: 1.5;
+/* Grid Layouts */
+.transport-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-/* Information Grid */
+.accommodation-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
 
 .info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  gap: 1.5rem;
 }
 
+/* Info Box Styles */
 .info-box {
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.info-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.info-box h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+  font-weight: 600;
 }
 
 .info-box.attractions {
-  background-color: #c7ecc7;
+  border-left: 4px solid #10ac84;
 }
 
 .info-box.restaurants {
-  background-color: #ffe066;
+  border-left: 4px solid #ff9f43;
 }
 
 .info-box.itinerary {
-  background-color: #a8d1ff;
+  border-left: 4px solid #3742fa;
 }
 
 .info-box.travel-tips {
-  background-color: #ffb6b6;
+  border-left: 4px solid #ff3838;
 }
 
-/* Loading Animation */
+.info-box.flights {
+  border-left: 4px solid #0097e6;
+}
 
-.loading-spinner {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
+.info-box.trains {
+  border-left: 4px solid #8c7ae6;
+}
+
+.info-box.buses {
+  border-left: 4px solid #00d2d3;
+}
+
+.info-box.hotels {
+  border-left: 4px solid #ffa502;
+}
+
+.info-box.weather {
+  border-left: 4px solid #ff6348;
+}
+
+/* Budget Selector */
+.budget-selector {
+  margin-bottom: 1rem;
+}
+
+.budget-selector label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.budget-dropdown {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  background: white;
+  font-size: 0.95rem;
+}
+
+/* Social Share Styles */
+.social-share {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.social-share h3 {
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.share-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.share-btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.share-btn.twitter {
+  background: #1da1f2;
+}
+
+.share-btn.facebook {
+  background: #4267b2;
+}
+
+.share-btn.linkedin {
+  background: #0077b5;
+}
+
+.share-btn.whatsapp {
+  background: #25d366;
+}
+
+.share-btn.copy {
+  background: #6c757d;
+}
+
+.share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.share-tips {
+  background: rgba(102, 126, 234, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.share-tips p {
+  margin: 0;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+/* Loading Styles */
+.loading {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
   border-radius: 50%;
+  width: 20px;
+  height: 20px;
   animation: spin 1s linear infinite;
+  display: inline-block;
 }
 
-.input-container {
+.loading-small {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+.loading-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 500px;
-  margin-bottom: 2rem;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.loading-container p {
+  margin-top: 1rem;
+  color: #666;
+  font-style: italic;
 }
 
 @keyframes spin {
@@ -157,24 +419,78 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-/* Additional Styles */
+/* Responsive Design */
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .accommodation-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .transport-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .travel-input-form {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .travel-results {
+    padding: 1rem;
+  }
+  
+  .form-header h1 {
+    font-size: 2rem;
+  }
+  
+  .results-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .share-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .share-btn {
+    width: 200px;
+  }
+}
 
-.additional-info {
+@media (max-width: 480px) {
+  .feature-list {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .feature-item {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Legacy Styles - Keeping for compatibility */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 2rem;
+}
+
+.budget-info {
   margin-top: 2rem;
 }
-
-.link {
-  color: #007bff;
-  text-decoration: none;
-  transition: color 0.2s ease-in-out;
-}
-
-.link:hover {
-  color: #0056b3;
-}
-
-
-/* Old CSS for Headings */
 
 h1 {
   font-size: 2.5rem;
@@ -187,81 +503,4 @@ h2 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
   color: #263238;
-}
-
-
-
-button:hover {
-  background-color: #007bff;
-}
-
-
-input[type="text"]:focus {
-  border-color: #263238; /* Blue border on focus */
-}
-
-
-button:hover {
-  background-color: #007bff; /* Darker blue on hover */
-}
-
-.input-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center items horizontally */
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto 2rem; /* Center the container horizontally and add margin at the bottom */
-}
-
-input[type="text"] {
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  transition: border-color 0.2s ease-in-out;
-  width: 100%; /* Make input field full width */
-  max-width: 100%; /* Ensure input field doesn't exceed container width */
-}
-
-button {
-  padding: 1rem 2rem;
-  background-color: #263238; /* Blue button */
-  color: #fff; /* White text */
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.2s ease-in-out;
-  margin-top: 1rem; /* Add some space between input field and button */
-  width: 100%; /* Make button full width */
-  max-width: 100%; /* Ensure button doesn't exceed container width */
-}
-
-
-.loading {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  animation: spin 1s linear infinite;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.btn.loading {
-  position: relative;
-}
-
-.btn.loading .loading {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
 }
